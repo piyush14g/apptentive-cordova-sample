@@ -39,16 +39,112 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="css/index.css" />
-    <title>Hello World</title>
+    <title>Apptentive</title>
+    <script>
+        function testCustomDeviceData()
+        {
+            app.addCustomDeviceData("custom_device_key_str", "custom_device_value");
+            app.addCustomDeviceData("custom_device_key_bool", false);
+            app.addCustomDeviceData("custom_device_key_num", 2.1);
+
+        }
+        function testCustomPersonData()
+        {
+            app.addCustomPersonData("custom_person_key_str", "custom_person_value");
+            app.addCustomPersonData("custom_person_key_bool", true);
+            app.addCustomPersonData("custom_person_key_num", 13);
+        }
+    </script>
 </head>
 
 <body>
     <div class="app">
-        <h1>PhoneGap</h1>
+        <h1>Apptentive</h1>
         <div id="deviceready" class="blink">
             <p class="event listening">Connecting to Device</p>
             <p class="event received">Device is Ready</p>
         </div>
+        <div id="unreadMessages" class="blink">
+            <p class="event listening">Listening for unread message count…</p>
+            <p class="event received">Unread messages: <span id="unreadMessageCount"></span></p>
+        </div>
+        <ul>
+            <li>
+                <button onclick='app.canShowMessageCenter();'>Can Show MC?</button>
+            </li>
+            <li>
+                <button onclick='app.showMessageCenter();'>Show MC</button>
+            </li>
+            <li>
+                <button onclick='app.showMessageCenterWithCustomData({"message_custom_data_key": "message_custom_data_value"});'>
+                    MC + Custom Data
+                </button>
+            </li>
+            <li>
+                <button onclick='testCustomDeviceData()'>addCustomDeviceData()</button>
+            </li>
+            <li>
+                <button onclick='testCustomPersonData()'>addCustomPersonData()</button>
+            </li>
+            <li>
+                <button onclick='app.engage("rating_event");'>Engage Rating</button>
+            </li>
+            <li>
+                <button onclick='app.engage("survey_event");'>Engage Survey</button>
+            </li>
+            <li>
+                <button onclick='app.engage("note_event");'>Engage Note</button>
+            </li>
+            <li>
+                <button onclick='app.engage("upgrade_message_event");'>Engage Upgrade Message</button>
+            </li>
+            <li>
+                <button onclick='app.engageWithCustomData("custom_data", {"key": "value"});'>Engage with Custom Data
+                </button>
+            </li>
+            <li>
+                <button onclick='app.getUnreadMessageCount();'>getUnreadMessageCount()</button>
+            </li>
+            <li>
+                <button onclick='app.removeCustomDeviceData("custom_device_key");'>removeCustomDeviceData()</button>
+            </li>
+            <li>
+                <button onclick='app.removeCustomPersonData("custom_person_key");'>removeCustomPersonData()</button>
+            </li>
+            <li>
+                <button onclick='app.getPersonEmail();'>getPersonEmail()</button>
+            </li>
+            <li>
+                <button onclick='app.setPersonEmail("test@apptentive.com");'>setPersonEmail()</button>
+            </li>
+            <li>
+                <button onclick='app.getPersonName();'>getPersonName()</button>
+            </li>
+            <li>
+                <button onclick='app.setPersonName("Chester Tester");'>setPersonName()</button>
+            </li>
+            <li>
+                <button onclick='app.setRatingProvider("amazon");'>setRatingProvider(amazon)</button>
+            </li>
+            <li>
+                <button onclick='app.putRatingProviderArg("package", "org.mozilla.firefox");'>putRatingProviderArg()
+                </button>
+            </li>
+            <li>
+                <button onclick='app.canShowInteraction("rating_event");'>canShowInteraction("rating_event")</button>
+            </li>
+            <li>
+                <button onclick='app.addUnreadMessagesListener(app.unreadMessagesListener);'>
+                    addUnreadMessagesListener()
+                </button>
+            </li>
+            <li>
+                <button onclick='app.login("<YOUR_JWT>");'>login()</button>
+            </li>
+            <li>
+                <button onclick='app.logout();'>logout()</button>
+            </li>
+        </ul>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
